@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <title>Show Images</title>
 </head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 <body>
 <h1>List of images</h1>
 <table>
-
+<tr>
+    <th>Name</th>
+    <th>ID</th>
+  </tr>
     {% for image in images %}
         <tr>
             {% set list1 = image['Id'].split(':') %}
