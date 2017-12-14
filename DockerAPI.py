@@ -46,6 +46,67 @@ def showimages():
 #     return render_template('formgetimage.html')
 
 
+# inspect a container including low level details --needs container id
+
+
+@app.route('/inspect',methods=['POST','GET'])
+def inspect():
+    if request.method == 'GET':
+        id = request.get_data()
+        l = id.split(':')
+        id = l[1]
+        return Response(requests.get('http://0.0.0.0:2375/containers/'+id+'/json'), mimetype='application/json')
+    return 'Invalid request'
+
+
+@app.route('/stop',methods=['POST','GET'])
+def stop():
+    if request.method == 'POST':
+        id = request.get_data()
+        l = id.split(':')
+        id = l[1]
+        return Response(requests.get('http://0.0.0.0:2375/containers/'+id+'/stop'), mimetype='application/json')
+    return 'Invalid request'
+
+@app.route('/pause',methods=['POST','GET'])
+def pause():
+    if request.method == 'POST':
+        id = request.get_data()
+        l = id.split(':')
+        id = l[1]
+        return Response(requests.get('http://0.0.0.0:2375/containers/'+id+'/pause'), mimetype='application/json')
+    return 'Invalid request'
+
+@app.route('/unpause',methods=['POST','GET'])
+def unpause():
+    if request.method == 'POST':
+        id = request.get_data()
+        l = id.split(':')
+        id = l[1]
+        return Response(requests.get('http://0.0.0.0:2375/containers/'+id+'/unpause'), mimetype='application/json')
+    return 'Invalid request'
+
+@app.route('/restart',methods=['POST','GET'])
+def restart():
+    if request.method == 'POST':
+        id = request.get_data()
+        l = id.split(':')
+        id = l[1]
+        return Response(requests.get('http://0.0.0.0:2375/containers/'+id+'/restart'), mimetype='application/json')
+    return 'Invalid request'
+
+# @app.route('/rename',methods=['POST','GET'])
+# def rename():
+#     if request.method == 'POST':
+#         name = request.get_data()
+#         l = name.split(':')
+#         id = l[1]
+#         return Response(requests.get('http://0.0.0.0:2375/containers/8d28ec4b6c41/'+id+'/restart'), mimetype='application/json')
+#     return 'Invalid request'
+
+
+
+
 @app.route('/createcontainer',methods=['POST','GET'])
 def createcontainer():
     if request.method=='POST':
